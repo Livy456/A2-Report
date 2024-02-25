@@ -22,91 +22,75 @@
 
 			<h3>Overall Analysis Questions</h3>
 			<ol>
-				<li>QUESTION_1</li>
-				<li>QUESTION_2</li>
-				<li>QUESTION_3</li>
-				<li>...</li>
+				<li>QUESTION_1: What is the socioeconomic and ethnic demographic of the communities most affected by corporate owner?</li>
+				<p> I was motivated to ask this question because of the “Homes for Profit” article that details how 51% of renters in the Greater Boston area are rent burdened. Additionally, the report indicated that renters would need an average of $200,000 salary to not be rent burdened.</p>
+
+				<li>QUESTION_2: What type of corporate investors or institutions are causing this increase in corporate ownership?</li>
+				<p>The motivation for this question came from the “Homes for Profit” and “Housing Justice Beyond the Emergency”. I wanted to know if the data would show any insights into the racial inequity and housing insecurity caused by speculative real estate investment. Additionally, from real life experience I see a lot of colleges in the Boston area. I want to investigate the potential impact on having a greater college population in a neighborhood.</p>
+				<li>QUESTION_3: How does speculative real estate investment affect the number of vacant housing units?</li>
+				<p>The motivation for this question came from the New York Times article about eviction judgement. I want to investigate how speculative real estate can increase the cost of rent and lead to tenants being evicted.</p>
 			</ol>
 		</section>
 
 		<section>
+			<h2>Dataset</h2>
+			<p>(Description from Metadata text file on Google Drive)This dataset encapsulates the evolution of corporate ownership and owner occupancy rates within various neighborhoods of Boston from 2004 to 2024. The data is derived from property assessment records of the City of Boston. Corporate ownership is determined using keyphrase matching on the 'owner name' field, identifying corporations with markers such as “LLC”, “LLP”, “LP”, “Corp”, “Realty”, "Trust", "Bank", etc. It's important to note that this method introduces a degree of fuzziness, as not all corporate-owned properties may be captured and non-corporate entities may occasionally be misclassified. The owner occupancy rate (own_occ_rate) is calculated as the proportion of 'OWN_OCC=Y' to the total of 'OWN_OCC=Y' and 'OWN_OCC=N' within each neighborhood, excluding blanks. Similarly, the corporate ownership rate (corp_own_rate) is the proportion of 'CORP_OWN=Y' to the total of 'CORP_OWN=Y' and 'CORP_OWN=N'</p>
+			
 			<h2>Discoveries & Insights</h2>
 
+			<p>
+				The dataset contains variables that measure the rate of corporate ownership and occupancy of housing units over two decades in Boston area, the race demographics of the Boston area, the quantity of institutional buildings in the Boston area, the total quantity of housing units in Boston area, and the quantity of vacant housing units. The data is distributed around 0.28 corporate ownership rate and 0.51 ownership occupancy rate. Dorchester has the greatest population size in the dataset, with twice the population size as the second greatest population size, Roxbury. Dorchester, Roxbury, and Mattapan have the greatest proportion of black people living in that neighborhood in the dataset.  
+				Some data quality issues found in the dataset were missing values for number of institutions (nursing, military, college, juvenile, correctional) in several neighborhoods and measurements for vacancy was not a percentage so it made it difficult to compare against other rates in the data. Initially, I used the sum measure to analyze the race demographics, but then realized that this was the cumulation of two decades of race demographics. I had to aggregate the race demographics data for each of the neighborhoods in Boston area. The aggregate of the proportion of each race in a neighborhood totalled to more than 100%, and I attribute this to error to people potentially being two or more races. I had to create my own calculated field to calculate the rate for vacant housing units for neighborhoods in Boston, since the data only had a count of the number of vacant housing. However, I wanted to compare the rate of vacant housing units to the rate of corporate ownership and the rate of ownership occupancy. Additionally, there was a feature called “ObjectId” that was not used in the data analysis, since this was presumably another way of labelling the neighborhood being analyzed. Moreover, I calculated the proportion of each race demographic (Asian, Hispanic, Native American, Black, and White). 
+				I discovered a relationship between ownership occupancy rate and corporate ownership rate. It is interesting that the data shows an increase in the rate of corporate ownership rate over the past two decades with a correlated decrease in occupancy ownership rate over the past two decades. Additionally, some of the neighborhoods in the Boston area that have a higher corporate ownership rate have more colleges. We will dive deeper into the dataset to better understand the relationship between these variables and a potential rationale behind this negative correlation. 
+				We first explore the rate of corporate ownership and house occupancy in the Boston area against time by plotting their relationship on a Gantt chart. Furthermore, we plot the number of colleges and race demographics to see if there are correlations between the rate of corporate ownership and house occupancy to answer our initial analysis questions.					
+			</p>
+
 			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
+				<img src="Corporate Ownership and Ownership Occupancy Rate over a Decade in Boston Area.png" alt="" />
 				<figcaption>
-				ENTER IMAGE CAPTION HERE.
+					This Gantt chart shows the corporate ownership rate and the ownership occupancy rate over the past two decades for neighborhoods in the Boston area. This graph shows an increase in the corporate ownership rate. With further analysis, we found that in 2020 corporate ownership rate are on average 5 times greater than 2010. East Boston specifically has had 10 times the rate of corporate ownership from 2010 to 2020. Additionally, the graph shows an overall decrease in the ownership occupancy rate over the past two decades. As you can see from the graph, less landlords are living in the property they own. A trend of low ownership occupancy rate and high corporate ownership rate forms, with Fenway, Longwood, and Allston as examples of this trend. The following questions are formulated after looking at the graph: what type of institutions are causing the increase in corporate ownership rate? Does the number and type of institutions in a neighborhood affect whether or not a landlord occupancies their property? 
+
 				</figcaption>
 			</figure>
 
 			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
+				<img src="Number of Institutions in Boston Area.png" alt="" />
 				<figcaption>
-				ENTER IMAGE CAPTION HERE.
+					We investigate which institutions might be responsible for the increase in corporate ownership rate over the past two decades. We explore the average number of people in the Boston area that reside in an institutional building by using a side-by-side bar graph. There are some neighborhoods with zero or null values for institution buildings, but we can still get insights into the dataset. Even though the y-axis is at a different scale for each institution, we can see that fenway has the greatest number of people of people living in institution buildings. From the graph, we can see that Fenway has on average more than 15,000 people residing in a college building. Additionally, Roxbury, Allston, Downtown, Longwood, and Brighton have an average of number of 2,500 people or more residing in college buildings. This is more than three times the number of people that are living in the second greatest institution building, correctional buildings. This implies that the reason there might be a correlation between high corporate ownership rate and the number of people living in college residency. This raises the following question: Does having a higher proportion of college students affect the corporate ownership rate? How does the rate number of people living in institutional buildings affect the number of vacant units or the number of occupancy units?
+
 				</figcaption>
 			</figure>
 
 			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
+				<img src="Average Number of Institutions in Boston Area.png" alt="" />
 				<figcaption>
-				ENTER IMAGE CAPTION HERE.
+					This graph explores the relationship between corporate ownership rate and the number of people in college. The neighborhoods with zero or null values for the number of colleges in the Boston area were removed from the graph. From the scatter plot we can see that there is a positive correlation between the number of people in college and the corporate ownership rate in the Boston area. We performed a statistical analysis and found that corporate ownership rate and the number of people college have a p-value of 0.05. We can reject the null hypothesis and can say that the results are statistically significant. This implies that the majority of the corporate owned buildings are owned by college institutions. In this exploratory data analysis we will explore more of the potential effects of having a greater number of college students in a neighborhood. We will do this by exploring the race demographics, the number of vacant units, and the number of occupied unites for each neighborhood in Boston. Is there a correlation between the rate of vacant units or occupied units and corporate ownership rate? What are the race demographics of the neighborhoods in Boston with more vacant units?
+
 				</figcaption>
 			</figure>
 
 			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
+				<img src="college_vac_occ_corp.png" alt="" />
 				<figcaption>
-				ENTER IMAGE CAPTION HERE.
+					Now we look at the average vacancy rate and average number of housing units occupied versus the average corporate ownership rate and average number of people in college by using a side-by-side scatter plot. We removed values of zero from the graph since the trend line was being affected by those data values. From the graph we can see there is no correlation between average rate vacancy or average number of housing units occupied and the average number of people. If we look closer at the p-value for top left and top right chart we can see that average number of occupied housing units and the average number of people in college has no correlation because they have a p-value of 0.255. Whereas, the average rate of vacant housing units and average corporate ownership rate has a p-value of 0.0872, so we can not say the results are statistically significant but we can say that there is a positive trend. This implies that having a higher rate of corporate ownership can potentially effect the average rate of vacant housing units. From the “Homes for Profit” article, we know that 51% of renters in the Greater Boston area are rent burdened. Additionally, we know from the “Homes for Profit” article that speculative real estate and having more corporate owned housing units can cause the cost of rent to increase. This can lead to renters not being able to afford the housing units they are staying in. This can lead to the tenant being evicted and can cause more vacant housing units. We will look into the race demographics of each neighborhood to determine who might be effected by higher corporate ownership rate.
 				</figcaption>
 			</figure>
 
 			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
+				<img src="Average Corporate Ownership Rate vs Race Demographics.png" alt="" />
 				<figcaption>
-				ENTER IMAGE CAPTION HERE.
+					The side-by-side scatter plot shows the corporate ownership rate versus the proportion of each race in a neighborhood in Boston. We removed Chinatown, because it was skewing the trend line. When looking at the graph we can see that the average corporate ownership rate and the proportion of black and Asian in a neighborhood. After inspecting the p-values, we find that the proportion of black people and the average corporate ownership rate has a negative correlation and a p-value of 0.06 so the two features are correlated.  The proportion of Asian people and the average corporate ownership rate has a positive correlation and a p-value of 0.005, so we can reject the null hypothesis. From the data visualization we can infer that a higher proportion of Asian people are living in institutional building. When investigating specific points in the scatter plot we see that the point with the highest proportion of Asian people in the neighborhood are Fenway and Allston, after removing Chinatown. Moreover, we know from an earlier graph that Allston and Fenway have a greater average number of people living in college, which can be the reasoning for greater average corporate ownership rate. From the statistical analysis, we see that black and asian people are most affected by the corporate ownership rate. 
+
 				</figcaption>
 			</figure>
 
-			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
-				<figcaption>
-				ENTER IMAGE CAPTION HERE.
-				</figcaption>
-			</figure>
-
-			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
-				<figcaption>
-				ENTER IMAGE CAPTION HERE.
-				</figcaption>
-			</figure>
-
-			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
-				<figcaption>
-				ENTER IMAGE CAPTION HERE.
-				</figcaption>
-			</figure>
-
-			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
-				<figcaption>
-				ENTER IMAGE CAPTION HERE.
-				</figcaption>
-			</figure>
-
-			<figure>
-				<img src="IMAGE_FILENAME" alt="" />
-				<figcaption>
-				ENTER IMAGE CAPTION HERE.
-				</figcaption>
-			</figure>
 		</section>
 
 		<section>
 			<h2>Summary</h2>
 
-			<p>WRITE FINAL SUMMARY HERE.</p>
+			<p>In this exploratory data analysis, we explore the relationship between the average corporate ownership rate, ownership occupancy, average number of vacant housing units, race demographics, and the average number of people living in an institutional building. We had to use the average value or calculate proportions for features because the data was collected over the course of two decades. There is a positive correlation between the average corporate ownership rate and the average number of people in college. Additionally, from the data analysis we can see that asian and black people are affected by corporate ownership.The neighborhoods that had greater corporate ownership rate and greater proportion of asian people also had a greater average number of people in college. Additionally, the neighborhoods with a greater proportion of black people had a lower average corporate ownership rate. We can infer that the neighborhoods with a greater average corporate ownership rate had a lot of colleges in the neighborhood. This would result in the majority of the population being college students. The average number of vacant housing units would be increased because the greater average corporate ownership rate implies the rent would be greater. We can infer that tenants that live in these neighborhood that are not college students would be rent burdened. From the “Homes for Profit” article we can say that neighborhoods with lower corporate ownership rate have a lower rent payment. We conclude that neighborhoods with a greater average corporate ownership rate and greater number of college students are gentrified and got too expensive too live in. A higher average corporate ownership rate results in a higher rate of housing units being vacant due to rent being more expensive, which is displayed in graph 4. 
+</p>
 		</section>
 	</main>
 </body>
